@@ -92,15 +92,20 @@
     return `<img class="popup-foto" src="${esc(m.foto)}" alt="${esc(m.fotoAciklama || m.mekan)}" loading="lazy">`;
   }
   function popup(m) {
+    const literaryRecords = mekanlar.filter(record => E.normalize(record.mekan.trim()) === E.normalize(m.mekan.trim()) && E.normalize(record.ilce.trim()) === E.normalize(m.ilce.trim()));
+    const literaryContent = literaryRecords.map(record => `
+      <section class="literary-record">
+      <div class="detail-book"><img src="${esc(record.kitapGorsel)}" alt="${esc(record.kitap)} için özgün proje görseli"><div><span class="detail-book-label">${record.id === 'oe1' ? 'YAZARLA İLİŞKİLİ MEKÂN' : 'BU MEKÂNIN KİTABI'}</span><b>${esc(record.kitap)}</b><span>${esc(record.yazar)} <i>·</i> ${esc(record.yil)}</span></div><span class="detail-book-icon" aria-hidden="true">▤</span></div>
+      ${record.alinti ? `<blockquote class="detail-quote">“${esc(record.alinti)}”<cite>${esc(record.sayfa)}${record.baski ? ` · ${esc(record.baski)}` : ''}</cite></blockquote>` : ''}
+      <div class="detail-section"><h4><span aria-hidden="true">✎</span> Hikâyedeki yeri</h4><p>${esc(record.ozet)}</p>${!record.alinti ? '<span class="detail-disclaimer">Taslak sahne özeti · birebir alıntı değildir.</span>' : ''}${record.id !== m.id ? `<span class="detail-disclaimer">${record.dogrulandi ? 'Doğrulandı' : 'Doğrulama bekliyor'}</span>` : ''}</div>
+      </section>`).join('');
     const locationLabel = m.kesinlik === 'kesin' ? 'Kesin konum' : 'Tahmini konum';
     const evidence = [m.baski ? `<p><b>Baskı</b> ${esc(m.baski)}</p>` : '', m.kaynaklar?.length ? `<p><b>Konum kaynakları</b> ${m.kaynaklar.map(esc).join(' · ')}</p>` : ''].join('');
     return `<article class="place-detail" style="--book-color:${colors[m.kitap]}">
       ${window.AtlasMedia.gallery(m)}
       <div class="detail-body"><div class="detail-eyebrow">İSTANBUL'UN EDEBÎ DURAKLARI</div><h3 class="popup-baslik">${esc(m.mekan)}</h3>
       <div class="detail-badges"><span class="detail-badge ${m.kesinlik}"><span aria-hidden="true">${m.kesinlik === 'kesin' ? '◉' : '◌'}</span> ${locationLabel}</span><span class="detail-badge ${m.dogrulandi ? 'verified' : 'pending'}">${m.dogrulandi ? '✓ Doğrulandı' : '◷ Doğrulama bekliyor'}</span></div>
-      <div class="detail-book"><img src="${esc(m.kitapGorsel)}" alt="${esc(m.kitap)} için özgün proje görseli"><div><span class="detail-book-label">BU MEKÂNIN KİTABI</span><b>${esc(m.kitap)}</b><span>${esc(m.yazar)} <i>·</i> ${esc(m.yil)}</span></div><span class="detail-book-icon" aria-hidden="true">▤</span></div>
-      ${m.alinti ? `<blockquote class="detail-quote">“${esc(m.alinti)}”<cite>${esc(m.sayfa)}${m.baski ? ` · ${esc(m.baski)}` : ''}</cite></blockquote>` : ''}
-      <section class="detail-section"><h4><span aria-hidden="true">✎</span> Hikâyedeki yeri</h4><p>${esc(m.ozet)}</p>${!m.alinti ? '<span class="detail-disclaimer">Taslak sahne özeti · birebir alıntı değildir.</span>' : ''}</section>
+      <section aria-label="Bu mekânla ilgili kitaplar ve anlatımlar">${literaryContent}</section>
       <section class="detail-section detail-history"><h4><span aria-hidden="true">◴</span> Eskiden / Bugün</h4><p>${m.eskiBugun ? esc(m.eskiBugun) : 'Bu mekân için karşılaştırma notu henüz eklenmedi.'}</p></section>
       ${m.konumGerekcesi ? `<p class="detail-disclaimer">${esc(m.konumGerekcesi)}</p>` : ''}${m.id === 'oe1' ? '<p class="detail-warning">Yazarla ilişkili mekân; romandaki otelle karıştırılmamalıdır.</p>' : ''}
       <details class="detail-sources"><summary>Fotoğraf ve kaynak bilgisi <span aria-hidden="true">＋</span></summary><p>Fotoğraf: ${esc(m.fotoYazar)} · ${esc(m.fotoLisans)}. <a href="${esc(m.fotoKaynak)}" target="_blank" rel="noopener noreferrer">Kaynağı incele ↗</a>${m.fotoLisansUrl ? ` · <a href="${esc(m.fotoLisansUrl)}" target="_blank" rel="noopener noreferrer">Lisans koşulları</a>` : ''}</p><p>Fotoğraf ölçeklenip çerçeveye sığdırılarak gösterilir. Görselin çekim tarihi bugünü temsil etmeyebilir.</p>${evidence}${!m.alinti ? '<p>Kitap alıntısı ve sayfa bilgisi henüz eklenmedi.</p>' : ''}</details>
@@ -280,7 +285,7 @@
   });
   $('oneriForm').addEventListener('input', event => event.target.setCustomValidity?.(''));
   $('oneriIndir').addEventListener('click', () => {
-    const url = URL.createObjectURL(new Blob([JSON.stringify({proje:'İstanbul Edebiyat Haritası',oneriler:sessionSuggestions},null,2)],{type:'application/json;charset=utf-8'}));
+    const url = URL.createObjectURL(new Blob([JSON.stringify({proje:"İstanbul'un Edebî Hafızası: Kitapların İzinde Dijital Şehir Atlası",oneriler:sessionSuggestions},null,2)],{type:'application/json;charset=utf-8'}));
     const link = document.createElement('a');
     link.href = url; link.download = 'edebiyat-haritasi-oneriler.json';
     document.body.append(link); link.click(); link.remove();
