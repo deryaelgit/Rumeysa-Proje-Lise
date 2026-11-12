@@ -1,1 +1,1 @@
-window.ATLAS_CONFIG = {"suggestions":"download"};
+window.ATLAS_CONFIG = {"suggestions":"google-form"};
