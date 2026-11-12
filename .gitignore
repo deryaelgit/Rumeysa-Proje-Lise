@@ -5,3 +5,6 @@ test-results/
 *.log
 oneriler.json.*.tmp
 .publish/
+
+# Ziyaretçilerin yerel önerileri kaynak depoya yüklenmez.
+oneriler.json
