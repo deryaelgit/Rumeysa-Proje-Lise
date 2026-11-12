@@ -1,0 +1,60 @@
+﻿<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#234c42">
+  <meta name="description" content="İstanbul'u yedi kitabın izinde keşfedin. Edebî mekânlar, kitap rotaları ve şehrin hafızası bir haritada.">
+  <title>İstanbul'un Edebiyat Haritası · Sayfalardan Sokaklara</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="vendor/leaflet/leaflet.js"></script>
+  <script defer src="mekanlar.js"></script>
+  <script defer src="core.js"></script>
+  <script defer src="runtime-config.js"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#kesfet">Haritaya geç</a>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Edebiyat Atlası ana sayfa"><span class="brand-icon" aria-hidden="true">E<span>·</span></span><span>EDEBİYAT <b>ATLASI</b><small>İSTANBUL</small></span></a>
+    <nav aria-label="Ana menü"><a href="#kesfet" class="nav-active">Haritayı keşfet</a><a href="#istatistik">Sayılarla İstanbul</a><a href="#yontem">Proje hakkında</a></nav>
+    <a class="header-contribute" href="#katki">Katkıda bulun <span aria-hidden="true">↗</span></a>
+  </header>
+  <main>
+    <section class="hero" aria-labelledby="baslik">
+      <div class="hero-copy"><p class="eyebrow"><span></span> BİR ŞEHİR, BİNLERCE HİKÂYE</p><h1 id="baslik">Sayfalardan<br><em>İstanbul sokaklarına.</em></h1><p class="intro">Bir romanın sokağında yürüyün, bir hikâyenin kıyısında durun.<br class="desktop-br"> İstanbul'u bu kez yazarların gözünden keşfedin.</p><a class="text-link" href="#kesfet">Şehrin hikâyesine adım atın <span aria-hidden="true">↓</span></a></div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 600 260" fill="none"><defs><pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" stroke="#d8d9c8" stroke-width=".6"/></pattern></defs><rect width="600" height="260" fill="url(#grid)"/><circle cx="370" cy="110" r="75" fill="#e6d9b6" opacity=".65"/><path d="M0 224Q100 174 185 218T360 211T600 196" stroke="#9eada2"/><path d="M0 238Q100 188 185 232T360 225T600 210" stroke="#9eada2"/><g stroke="#506e60" stroke-width="2" fill="#f4f1e7"><path d="M84 200V145H128V200M78 145H134L106 125Z"/><path d="M97 125V90H115V125M94 90L106 61L118 90Z"/><path d="M102 61V48M103 159V174M115 159V174M103 184V199"/><path d="M206 207V159H314V207M216 159Q260 88 304 159M260 123V107M223 207V174H239V207M253 207V174H269V207M283 207V174H299V207"/><path d="M195 207V114H204V207M193 114L199 94L206 114M316 207V114H325V207M313 114L320 94L328 114"/><path d="M360 203V161H396V203M370 161V143H387V161M369 143L378 117L389 143M378 117V107"/><path d="M420 199V133H436V199M548 196V126H564V196M436 145Q490 208 548 138M436 155H548M456 163V196M476 177V196M496 179V196M516 168V196M536 153V196"/></g><path d="M135 81C182 33 288 55 335 85S449 100 490 53" stroke="#b68258" stroke-dasharray="5 7"/><g fill="#b46948" stroke="#f4f1e7" stroke-width="4"><circle cx="135" cy="81" r="7"/><circle cx="335" cy="85" r="7"/><circle cx="490" cy="53" r="7"/></g><text x="417" y="247" font-size="10" letter-spacing="3" fill="#60786a">41°01′ N · 28°58′ E</text></svg>
+        <span class="art-caption">Her köşesinde bir cümle saklı.</span>
+      </div>
+    </section>
+    <section class="explore" id="kesfet" aria-labelledby="explore-title">
+      <div class="section-top"><div><p class="eyebrow">EDEBİYATIN İZİNİ SÜRÜN</p><h2 id="explore-title">Bir kitap seçin, şehre karışın.</h2></div><button type="button" id="rastgeleBtn" class="button primary"><span aria-hidden="true">⚄</span> Rastgele keşfet</button></div>
+      <div class="filters">
+        <label class="search-label"><span aria-hidden="true">⌕</span><span class="sr-only">Mekân, kitap, yazar veya ilçe ara</span><input type="search" id="aramaKutusu" placeholder="Mekân, kitap veya yazar ara…" autocomplete="off"></label>
+        <label><span class="sr-only">Kitaba göre filtrele</span><select id="kitapSecim"><option value="hepsi">Tüm kitaplar</option></select></label>
+        <label><span class="sr-only">Yazara göre filtrele</span><select id="yazarSecim"><option value="hepsi">Tüm yazarlar</option></select></label>
+        <button type="button" id="sifirlaBtn" class="button subtle">Filtreleri temizle</button>
+      </div>
+      <div class="map-workspace">
+        <aside class="place-sidebar" aria-label="Mekân listesi"><div class="list-heading"><h3>Hikâyenin durakları</h3><span id="sayac" role="status" aria-live="polite"></span></div><div id="mekanListesi"></div></aside>
+        <div class="map-column"><div class="map-styles" role="group" aria-label="Harita görünümü"><button type="button" data-map-style="sokak" aria-pressed="true"><span class="map-swatch streets"></span>Sokak</button><button type="button" data-map-style="uydu" aria-pressed="false"><span class="map-swatch satellite"></span>Uydu + binalar</button><button type="button" data-map-style="atlas" aria-pressed="false"><span class="map-swatch atlas"></span>Sade atlas</button><button type="button" id="binaDetay" class="building-zoom" title="Seçilen mekâna bina ayrıntısında yakınlaş">Bina detayı ＋</button></div><div id="harita" aria-label="İstanbul edebî mekânlar haritası"></div><p id="haritaDurum" class="map-status" role="status" hidden></p><div class="map-toolbar"><label class="route-toggle"><input type="checkbox" id="rotaCheck" checked> Kitap rotasını çiz</label><button type="button" class="fit-button" id="haritayiSigdir">Tüm sonuçları göster ↗</button></div></div>
+      </div>
+      <div class="legend-footer"><div class="pin-explanation"><span class="sample-pin"></span> Kesin konum <span class="sample-pin estimated"></span> Tahmini konum</div><span id="rotaBilgi">Rota için bir kitap seçin.</span></div>
+      <div id="lejant" aria-label="Kitap renkleri ve hızlı filtreler"></div>
+      <p class="data-note"><span aria-hidden="true">ⓘ</span> Bu harita örnek verilerle hazırlanmıştır. Konumlar yaklaşık, sahne özetleri taslaktır; kitap ve kaynak kontrolü beklemektedir. “Kesin konum”, kaydın kitaptan doğrulandığı anlamına gelmez.</p>
+    </section>
+    <section class="bookshelf" aria-labelledby="books-title"><div class="section-top"><div><p class="eyebrow">YEDİ KİTAP, AYNI ŞEHİR</p><h2 id="books-title">İstanbul kitaplığı</h2></div><span class="section-note">Özgün proje görselleri</span></div><div id="kitaplik"></div><p class="data-note">Kitap görselleri bu proje için tasarlanmıştır; yayınevlerinin gerçek kapakları değildir.</p></section>
+    <section class="statistics" id="istatistik" aria-labelledby="stats-title"><div class="section-top"><div><p class="eyebrow">ŞEHRİN EDEBÎ HAFIZASI</p><h2 id="stats-title">İstanbul, satır aralarında.</h2></div><span class="section-note">Tüm örnek veri kümesi</span></div><div class="stats-layout"><div class="stat-cards"><div class="stat-card"><span class="stat-symbol">▤</span><b id="sKitap">0</b><span>kitap</span></div><div class="stat-card"><span class="stat-symbol">✎</span><b id="sYazar">0</b><span>yazar</span></div><div class="stat-card"><span class="stat-symbol">⌖</span><b id="sMekan">0</b><span>edebî mekân</span></div><div class="stat-card"><span class="stat-symbol">✓</span><b id="sDogru">%0</b><span>doğrulanan kayıt</span></div></div><div class="district-chart"><h3>Hikâyeler hangi ilçelerde?</h3><div id="ilceGrafik"></div></div></div></section>
+    <section class="about-section" id="yontem"><div><p class="eyebrow">PROJE HAKKINDA</p><h2>Bir haritadan fazlası,<br>bir okuma yolculuğu.</h2><p>İstanbul'un edebiyattaki izlerini görünür kılmak için hazırlanan bu çalışma, kitaplarla şehir arasında bir köprü kurmayı amaçlıyor.</p><p class="research-question">Araştırma sorumuz <span>İstanbul'un hangi ilçeleri edebiyatta daha çok yer alıyor, hangileri görünmez kalıyor?</span></p></div><div class="method"><h3>Araştırma ve doğrulama yöntemimiz</h3><p class="method-note">Aşağıdaki adımlar doğrulama hedefimizdir. Örnek kayıtlar henüz bu süreci tamamlamadı.</p><ol><li><b>Oku ve kaydet</b><span>Mekânı, kısa alıntıyı, sayfayı ve kitabın baskı bilgisini kaydet.</span></li><li><b>Konumu karşılaştır</b><span>En az iki bağımsız kaynakla kontrol et; belirsiz konuma gerekçe ekle.</span></li><li><b>Doğrula ve paylaş</b><span>Kontrol eden kişiyi ve tarihi belgele, ardından kaydı doğrulandı olarak işaretle.</span></li></ol><button type="button" id="kaynakcaBtn" class="text-link">Örnek veri ve kaynakça durumunu incele ↗</button></div></section>
+    <section class="contribution" id="katki"><div><p class="eyebrow">BU HİKÂYEYE SİZ DE KATILIN</p><h2>Sizin kitabınızda hangi İstanbul var?</h2><p>Okuduğunuz bir eserde geçen bir mekânı önerin.<br>Her yeni durak, şehrin hafızasına açılan bir kapı.</p></div><button type="button" id="oneriAc" class="button primary">Bir mekân önerin <span aria-hidden="true">↗</span></button></section>
+  </main>
+  <footer><a class="footer-brand" href="#">EDEBİYAT ATLASI <span>· İSTANBUL</span></a><p>TÜBİTAK 4006 Bilim Fuarı için hazırlanan örnek proje · <a href="stand.html">Stand ve QR kod ↗</a></p><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">Harita © OpenStreetMap katkıcıları ↗</a></footer>
+  <dialog id="oneriDialog" aria-labelledby="oneriBaslik"><div class="dialog-top"><p class="eyebrow">BİRLİKTE BÜYÜYEN BİR ATLAS</p><button type="button" class="close-dialog" aria-label="Öneri formunu kapat">×</button></div><h2 id="oneriBaslik">Bir mekân önerin</h2><p>Öneriniz bu projeyi çalıştıran sunucunun oneriler.json dosyasına kaydedilir. Kişisel bilgi paylaşmayın; öneriler kontrol edildikten sonra haritaya eklenir.</p><form id="oneriForm"><label>Kitap adı<input name="kitap" required maxlength="150"></label><label>Yazar<input name="yazar" required maxlength="150"></label><label>Mekân ve ilçe<input name="mekan" required maxlength="200"></label><div class="form-columns"><label>Sayfa<input name="sayfa" maxlength="40" placeholder="Örn. s. 45"></label><label>Yayınevi / baskı<input name="baski" maxlength="200"></label></div><label>Notunuz<textarea name="not" rows="3" required maxlength="1500" placeholder="Mekân kitapta nasıl geçiyor? Konum için hangi kaynağa baktınız?"></textarea></label><button class="button primary" type="submit">Öneriyi dosyaya kaydet</button></form><p id="oneriDurum" role="status" aria-live="polite"></p><div class="saved-actions"><span id="oneriAdet"></span><button type="button" id="oneriIndir" class="text-link">Bu oturumun önerilerini indir ↓</button></div></dialog>
+  <dialog id="kaynakcaDialog" aria-labelledby="kaynakcaBaslik"><div class="dialog-top"><p class="eyebrow">ŞEFFAF VERİ</p><button type="button" class="close-dialog" aria-label="Kaynakçayı kapat">×</button></div><h2 id="kaynakcaBaslik">Kaynakça ve doğrulama</h2><p>Bu liste bir okuma listesidir. Kullanılan baskı, sayfa ve iki konum kaynağı henüz girilmediği için akademik kaynakça olarak değerlendirilmemelidir. Alıntılar bilerek boş bırakılmıştır.</p><div id="kaynakcaListesi"></div><p class="data-note">Pera Palace kaydı yazarın yaşamıyla ilişkili bir örnektir; romanda geçen otelle aynı olduğu kabul edilmemelidir. Rota çizgileri örnek kayıt sırasını gösterir; yürüyüş güzergâhı değildir.</p></dialog>
+  <noscript><p class="data-note">Harita ve filtreler için JavaScript'i etkinleştirin.</p></noscript>
+</body>
+</html>
+

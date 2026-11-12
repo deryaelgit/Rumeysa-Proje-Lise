@@ -1,0 +1,20 @@
+{
+  "name": "istanbul-edebiyat-haritasi",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Kitapların sayfalarından İstanbul sokaklarına, veritabanı gerektirmeyen edebiyat haritası.",
+  "scripts": {
+    "start": "node tools/server.cjs",
+    "dev": "node tools/server.cjs",
+    "build": "node tools/build.cjs",
+    "test": "node --test tests/*.test.cjs",
+    "test:browser": "node tests/browser.cjs"
+  },
+  "dependencies": {
+    "leaflet": "1.9.4",
+    "qrcode-generator": "1.4.4"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1"
+  }
+}
