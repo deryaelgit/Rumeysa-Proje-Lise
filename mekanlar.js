@@ -1,4 +1,4 @@
-// Edebî kayıtlar doğrulama bekler. Görsel kaynakları: fotograflar/kaynaklar.json
+// Edebî kayıtlar doğrulama bekler.
 const mekanlar = [
   {
     "id": "fh1",
@@ -18,10 +18,10 @@ const mekanlar = [
     "dogrulandi": false,
     "foto": "fotograflar/fh1.jpg",
     "fotoAciklama": "Fatih Camii; semti temsil eden görüntü",
-    "fotoKaynak": "https://commons.wikimedia.org/wiki/File:Turkey-3019_-_Hagia_Sophia_(2216460729).jpg",
-    "fotoYazar": "Dennis G. Jarvis",
-    "fotoLisans": "CC BY-SA 2.0",
-    "fotoLisansUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "fotoKaynak": "https://commons.wikimedia.org/wiki/File:Sultan_Muhammet_Fatih_camii_(cropped).jpg",
+    "fotoYazar": "Ezzeldin.Elbaksawy",
+    "fotoLisans": "CC BY-SA 4.0",
+    "fotoLisansUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "kitapGorsel": "kitaplar/kitap-1.svg"
   },
   {

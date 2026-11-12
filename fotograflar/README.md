@@ -1,8 +1,8 @@
 # Mekân görselleri
 
-Wikimedia görselleri değiştirilmeden kullanılmıştır; arayüzde sığdırmak için kırpılarak görüntülenir. Tahmini konumlarda fotoğraf, romandaki kesin adresi belgelemek yerine çevreyi temsil eder. Fotoğraf kaynağı kitaptaki sahnenin doğrulama kaynağı değildir.
+Fotoğraflar kaynak dosyaları değiştirilmeden, CSS ile sığdırılarak görüntülenir. Görüntüler farklı tarihlerdendir; canlı görüntü değildir. Tahmini konumlarda çevreyi temsil eder.
 
-- **fh1**: Dennis G. Jarvis — CC BY-SA 2.0. [Kaynak](https://commons.wikimedia.org/wiki/File:Turkey-3019_-_Hagia_Sophia_(2216460729).jpg) · [Lisans](https://creativecommons.org/licenses/by-sa/2.0)
+- **fh1**: Ezzeldin.Elbaksawy — CC BY-SA 4.0. [Kaynak](https://commons.wikimedia.org/wiki/File:Sultan_Muhammet_Fatih_camii_(cropped).jpg) · [Lisans](https://creativecommons.org/licenses/by-sa/4.0)
 - **fh2**: Mirada — CC BY-SA 3.0. [Kaynak](https://commons.wikimedia.org/wiki/File:Askeri_muze_Istanbul.jpg) · [Lisans](https://creativecommons.org/licenses/by-sa/3.0)
 - **mm1**: Chapultepec — Public domain. [Kaynak](https://commons.wikimedia.org/wiki/File:Tesvikiye_Mosque,_Istanbul_07.jpg)
 - **hz1**: Hunanuk — CC0. [Kaynak](https://commons.wikimedia.org/wiki/File:S%C3%BCleymaniyeMosqueIstanbul_(cropped).jpg) · [Lisans](http://creativecommons.org/publicdomain/zero/1.0/deed.en)
@@ -13,5 +13,3 @@ Wikimedia görselleri değiştirilmeden kullanılmıştır; arayüzde sığdırm
 - **oe1**: qwesy qwesy — CC BY 3.0. [Kaynak](https://commons.wikimedia.org/wiki/File:Pera_Palace_Hotel_Jumeirah_-_panoramio.jpg) · [Lisans](https://creativecommons.org/licenses/by/3.0)
 - **oe2**: Bahnhofsfront-Istanbul-Sirkeci.jpg: Martin Dürrschnabel
 derivative work: Dha (talk) — CC BY-SA 2.5. [Kaynak](https://commons.wikimedia.org/wiki/File:Bahnhofsfront-Istanbul-Sirkeci_retouched.jpg) · [Lisans](https://creativecommons.org/licenses/by-sa/2.5)
-
-Makine tarafından okunabilir bilgiler: kaynaklar.json.
