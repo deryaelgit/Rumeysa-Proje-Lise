@@ -7,6 +7,7 @@
   const books = [...new Set(mekanlar.map(m => m.kitap))];
   const colors = Object.fromEntries(books.map((book, i) => [book, E.palette[i % E.palette.length]]));
   const ui = { search: $('aramaKutusu'), book: $('kitapSecim'), author: $('yazarSecim'), route: $('rotaCheck') };
+  let atlas;
   let map, markersLayer, routeLayer, activeId = null, visible = [], previousRandom = null;
   const markers = new Map();
   const dataErrors = E.validate(mekanlar);
@@ -63,6 +64,7 @@
     mapStatus('Harita kütüphanesi yüklenemedi. npm install ve npm run build komutlarını çalıştırın. Mekânları aşağıdaki listeden inceleyebilirsiniz.');
   }
   books.forEach(book => ui.book.add(new Option(book, book)));
+  atlas = window.AtlasTools.create({map, render});
   [...new Set(mekanlar.map(m => m.yazar))].sort((a,b) => a.localeCompare(b,'tr')).forEach(author => ui.author.add(new Option(author, author)));
   books.forEach(book => {
     const button = document.createElement('button');
@@ -106,6 +108,7 @@
       <div class="detail-body"><div class="detail-eyebrow">İSTANBUL'UN EDEBÎ DURAKLARI</div><h3 class="popup-baslik">${esc(m.mekan)}</h3>
       <div class="detail-badges"><span class="detail-badge ${m.kesinlik}"><span aria-hidden="true">${m.kesinlik === 'kesin' ? '◉' : '◌'}</span> ${locationLabel}</span><span class="detail-badge ${m.dogrulandi ? 'verified' : 'pending'}">${m.dogrulandi ? '✓ Doğrulandı' : '◷ Doğrulama bekliyor'}</span></div>
       <section aria-label="Bu mekânla ilgili kitaplar ve anlatımlar">${literaryContent}</section>
+      ${atlas.detail(m)}
       <section class="detail-section detail-history"><h4><span aria-hidden="true">◴</span> Eskiden / Bugün</h4><p>${m.eskiBugun ? esc(m.eskiBugun) : 'Bu mekân için karşılaştırma notu henüz eklenmedi.'}</p></section>
       ${m.konumGerekcesi ? `<p class="detail-disclaimer">${esc(m.konumGerekcesi)}</p>` : ''}${m.id === 'oe1' ? '<p class="detail-warning">Yazarla ilişkili mekân; romandaki otelle karıştırılmamalıdır.</p>' : ''}
       <details class="detail-sources"><summary>Fotoğraf ve kaynak bilgisi <span aria-hidden="true">＋</span></summary><p>Fotoğraf: ${esc(m.fotoYazar)} · ${esc(m.fotoLisans)}. <a href="${esc(m.fotoKaynak)}" target="_blank" rel="noopener noreferrer">Kaynağı incele ↗</a>${m.fotoLisansUrl ? ` · <a href="${esc(m.fotoLisansUrl)}" target="_blank" rel="noopener noreferrer">Lisans koşulları</a>` : ''}</p><p>Fotoğraf ölçeklenip çerçeveye sığdırılarak gösterilir. Görselin çekim tarihi bugünü temsil etmeyebilir.</p>${evidence}${!m.alinti ? '<p>Kitap alıntısı ve sayfa bilgisi henüz eklenmedi.</p>' : ''}</details>
@@ -133,6 +136,7 @@
     content.innerHTML=popup(place);
     content.querySelector('.popup-baslik').id='mekanDetayBaslik';
     window.AtlasMedia.mount(place,content);
+    atlas.mountSound(place,content);
     content.scrollTop=0;
     const position=visible.findIndex(m=>m.id===id);
     $('mekanDialogSayac').textContent=`${position+1} / ${visible.length} durak`;
@@ -142,13 +146,13 @@
   }
   $('mekanDialog').querySelector('.place-dialog-close').addEventListener('click',()=>$('mekanDialog').close());
   $('mekanDialog').addEventListener('click',event=>{if(event.target===$('mekanDialog')){const rect=$('mekanDialog').getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)$('mekanDialog').close();}});
-  $('mekanDialog').addEventListener('close',()=>{document.body.classList.remove('detail-open');});
+  $('mekanDialog').addEventListener('close',()=>{document.body.classList.remove('detail-open');atlas.stopSound();});
   function adjacent(step) {const index=visible.findIndex(m=>m.id===activeId);const place=visible[(index+step+visible.length)%visible.length];if(place)selectPlace(place.id,false);}
   $('oncekiMekan').addEventListener('click',()=>adjacent(-1));
   $('sonrakiMekan').addEventListener('click',()=>adjacent(1));
 
   function render() {
-    visible = E.filter(mekanlar, { search: ui.search.value, book: ui.book.value, author: ui.author.value });
+    visible = E.filter(mekanlar, { search: ui.search.value, book: ui.book.value, author: ui.author.value }).filter(m => atlas.matches(m));
     activeId = null;
     markers.clear();
     markersLayer?.clearLayers();
@@ -166,13 +170,13 @@
       card.dataset.id = m.id;
       card.setAttribute('aria-pressed', 'false');
       card.setAttribute('aria-label', `${m.mekan}, ${m.kitap}. Ayrıntıları aç`);
-      card.style.setProperty('--book-color',colors[m.kitap]);
+      card.style.setProperty('--book-color',atlas.color(m) || colors[m.kitap]);
       card.innerHTML = `${m.foto ? `<img class="place-photo" src="${esc(m.foto)}" alt="" loading="lazy">` : ''}<span class="place-meta"><span>${esc(m.ilce)}</span><span>${m.dogrulandi ? '✓ Doğrulandı' : 'Doğrulanacak'}</span></span><h4>${esc(m.mekan)}</h4><span class="place-book"><span class="book-dot" aria-hidden="true"></span>${esc(m.kitap)}</span><span class="place-author">${esc(m.yazar)} · ${esc(m.yil)}</span><span class="card-arrow" aria-hidden="true">↗</span>`;
       card.addEventListener('click', () => selectPlace(m.id));
       list.append(card);
       if (map) {
         const marker = L.marker([m.enlem,m.boylam], {
-          icon: L.divIcon({ className:'', html:`<div class="map-marker ${m.kesinlik}" style="--book-color:${colors[m.kitap]}">${m.sira}</div>`, iconSize:[27,27], iconAnchor:[13.5,13.5], popupAnchor:[0,-16] }),
+          icon: L.divIcon({ className:'', html:`<div class="map-marker ${m.kesinlik}" style="--book-color:${atlas.color(m) || colors[m.kitap]}">${atlas.symbol(m) || m.sira}</div>`, iconSize:[27,27], iconAnchor:[13.5,13.5], popupAnchor:[0,-16] }),
           title: `${m.mekan} · ${m.kitap}`,
           alt: `${m.mekan} konum işaretçisi`,
           keyboard: true
@@ -198,7 +202,7 @@
   ui.book.addEventListener('change', render);
   ui.author.addEventListener('change', render);
   ui.route.addEventListener('change', render);
-  $('sifirlaBtn').addEventListener('click', () => { ui.search.value = ''; ui.book.value = ui.author.value = 'hepsi'; render(); });
+  $('sifirlaBtn').addEventListener('click', () => { ui.search.value = ''; ui.book.value = ui.author.value = 'hepsi'; atlas.reset(); render(); });
   $('haritayiSigdir').addEventListener('click', fit);
   $('rastgeleBtn').addEventListener('click', () => {
     // Rastgele keşif, ziyaretçinin filtrelediği kayıtlar arasından seçim yapar.
