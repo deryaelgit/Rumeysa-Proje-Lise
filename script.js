@@ -240,7 +240,13 @@
     $('oneriAdet').textContent = `${sessionSuggestions.length} öneri bu oturumda ${downloadMode ? 'hazırlandı' : 'kaydedildi'}`;
     $('oneriIndir').disabled = !sessionSuggestions.length;
   }
-  $('oneriAc').addEventListener('click', () => { updateSuggestions(); openDialog('oneriDialog'); });
+  if (window.ATLAS_CONFIG?.suggestions === 'server' || downloadMode) {
+    $('oneriAc').addEventListener('click', event => {
+      event.preventDefault();
+      updateSuggestions();
+      openDialog('oneriDialog');
+    });
+  }
   $('oneriForm').addEventListener('submit', async event => {
     event.preventDefault();
     const form = event.currentTarget;

@@ -33,7 +33,7 @@ npm start
 - Harita ile eşleşen mekân listesi; özet, Eskiden / Bugün, konum ve doğrulama durumu, Google Maps bağlantısı. Boş karşılaştırma notunda eksik bilgi açıkça belirtilir.
 - Tüm veri kümesi için kitap/yazar/mekân sayıları, doğrulanma yüzdesi ve ilçe dağılımı.
 - Araştırma yöntemi, kaynakça durumu ve örnek veri uyarıları.
-- Formdan önerileri sunucudaki `oneriler.json` dosyasına kalıcı kaydetme. Google Forms ve veritabanı kullanılmaz.
+- GitHub Pages üzerinden Google Forms ile öneri toplama; yerel Node.js sürümünde `oneriler.json` dosyasına kalıcı kayıt. Ayrı veritabanı kurulumu gerekmez.
 - Stand afişi, cihazda QR kod üretme, SVG indirme, yazdırma.
 
 ## Dosyalar
@@ -90,7 +90,11 @@ Gereksinim takibi: [docs/gereksinimler.md](docs/gereksinimler.md)
 
 Adres: https://deryaelgit.github.io/Rumeysa-Proje-Lise/
 
-Bu sürümde form öneriyi JSON dosyası olarak indirir; sunucuya göndermez. Yerel Node.js sürümü dosyaya kalıcı kayıt yapar. Statik yayında indirilmiş dosyayı proje ekibine ayrıca iletmek gerekir. Canlı ziyaretçilerin önerilerini otomatik toplamak için kalıcı diski olan Node.js hosting gerekir.
+Canlı sitedeki “Bir mekân önerin” bağlantısı Google Form'u yeni sekmede açar. Öneriler Google Forms'ta toplanır; bilgisayardaki veya GitHub'daki `oneriler.json` dosyasına yazılmaz. Form sahibi, formu kendi Google hesabıyla düzenlemeye açıp **Yanıtlar** sekmesinden bütün önerileri görebilir ve isterse Google E-Tablolar'a bağlayabilir. Ziyaretçilere düzenleme bağlantısı yerine yanıtlayan bağlantısı verilir. Formun yayınlanmış ve hedef ziyaretçilerin erişimine açık olması gerekir.
+
+Form bağlantısı: https://docs.google.com/forms/d/e/1FAIpQLSdulWBurif7l4TCnujkntKR_rEZ3Ng2lkPhamHIgIOFUxL8Ug/viewform
+
+Yerel `npm start` sürümünde mevcut form ve `oneriler.json` kaydı devam eder. Canlı sitedeki Google Form bağlantısı JavaScript kapalıyken de çalışır.
 
 Yayın için `node tools/publish-pages.cjs`; durum kontrolü için `node tools/publish-pages.cjs --status`. Kayıtlı GitHub Git oturumu ve depoda Pages yönetim yetkisi gerekir. Kimlik bilgileri dosyaya yazılmaz. Kaynak kod main, statik çıktı gh-pages dalındadır. Kaynak değişikliklerini main'e gönderdikten sonra yayın komutunu çalıştırın.
 

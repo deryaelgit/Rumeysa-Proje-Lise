@@ -4,7 +4,7 @@ const root = path.resolve(__dirname, '..');
 const files = ['index.html','style.css','script.js','core.js','mekanlar.js','favicon.svg','stand.html','stand.js','theme.js','theme.css','media.js','media.css'];
 function copyStatic(target, staticMode = false) {
   fs.mkdirSync(target, { recursive: true });
-  fs.writeFileSync(path.join(target,'runtime-config.js'),`window.ATLAS_CONFIG = ${JSON.stringify({suggestions:staticMode ? 'download' : 'server'})};\n`);
+  fs.writeFileSync(path.join(target,'runtime-config.js'),`window.ATLAS_CONFIG = ${JSON.stringify({suggestions:staticMode ? 'google-form' : 'server'})};\n`);
   fs.writeFileSync(path.join(target,'.nojekyll'),'');
   files.forEach(file => fs.copyFileSync(path.join(root,file), path.join(target,file)));
   fs.cpSync(path.join(root,'kitaplar'),path.join(target,'kitaplar'),{recursive:true});

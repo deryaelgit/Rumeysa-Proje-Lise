@@ -47,6 +47,10 @@ Fotoğraf için `foto: "fotograflar/galata.jpg"` gibi proje içindeki yolu yazı
 
 ## Ziyaretçi önerileri
 
+GitHub Pages yayınında “Bir mekân önerin” bağlantısı Google Forms'u açar. Canlı önerileri, formun sahibi olan Google hesabıyla formun **Yanıtlar** sekmesinden inceleyin. Bu kayıtlar `oneriler.json` dosyasına otomatik aktarılmaz. Doğruladığınız önerileri `mekanlar.js` dosyasına elle aktarın.
+
+Yerel Node.js sürümünde:
+
 `oneriler.json` veri tabanı değil, JSON liste dosyasıdır. Sunucu kimlik ve tarih ekler, `dogrulandi: false` olarak saklar. Formda kişisel bilgi istenmez. Önerilerin ham hali haritada yayımlanmaz.
 
 Aktarma: dosyayı yedekleyin → öneriyi inceleyin → kitabı ve konumu doğrulayın → `mekanlar.js` şemasına çevirin → testleri çalıştırın → sunucuyu yeniden başlatın. Öneri dosyasını düzenlerken sunucuyu durdurun. Dosya bozulursa sunucu eski içeriği silmez, kayıt hatası bildirir; geçerli yedeği geri koyun.

@@ -28,13 +28,9 @@
   await expect(page.locator('.streetview-link')).toHaveAttribute('href',/map_action=pano/);
   await page.locator('#mekanDialog .detail-maps').scrollIntoViewIfNeeded();
   await page.locator('.place-dialog-close').click();
-  await page.click('#oneriAc');
-  for(const[k,v]of Object.entries({kitap:'Canlı test',yazar:'Test',mekan:'Test',not:'Yalnızca indirme testi'}))await page.locator(`[name="${k}"]`).fill(v);
-  const download=page.waitForEvent('download');
-  await page.click('#oneriForm [type=submit]');
-  console.log('Öneri dosyası:',(await download).suggestedFilename());
-  await expect(page.locator('#oneriDurum')).toContainText('Henüz ekibe gönderilmedi');
-  await page.keyboard.press('Escape');
+  await expect(page.locator('#oneriAc')).toHaveAttribute('href','https://docs.google.com/forms/d/e/1FAIpQLSdulWBurif7l4TCnujkntKR_rEZ3Ng2lkPhamHIgIOFUxL8Ug/viewform');
+  await expect(page.locator('#oneriAc')).toHaveAttribute('target','_blank');
+  await expect(page.locator('#oneriDialog')).not.toBeVisible();
   if(errors.length)throw Error(errors.join('\n'));
   console.log('Canlı kontrol başarılı:',url);
   await page.screenshot({path:'test-results/live.png',fullPage:false});
