@@ -1,0 +1,65 @@
+﻿const {chromium,expect}=require('@playwright/test');
+const fs=require('node:fs/promises');
+(async()=>{
+ const {createServer}=require('../tools/server.cjs');
+ const server=createServer();await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
+ const base=`http://127.0.0.1:${server.address().port}`;
+ let browser;
+ try{
+  browser=await chromium.launch({headless:true});
+  const context=await browser.newContext({viewport:{width:1440,height:1050},colorScheme:'light'});
+  const page=await context.newPage();
+  const errors=[];page.on('pageerror',e=>errors.push(e.message));
+  await page.route(/https:\/\/(tile\.openstreetmap\.org|server\.arcgisonline\.com|services\.arcgisonline\.com)\//,route=>route.abort());
+  await page.goto(base,{waitUntil:'networkidle'});
+  await expect(page.locator('html')).toHaveAttribute('data-theme','light');
+  await page.click('#temaDegistir');
+  await expect(page.locator('html')).toHaveAttribute('data-theme','dark');
+  await expect(page.locator('#temaDegistir')).toHaveAttribute('aria-label','Açık temaya geç');
+  await page.reload({waitUntil:'networkidle'});
+  await expect(page.locator('html')).toHaveAttribute('data-theme','dark');
+  await page.locator('.place-card').first().click();
+  await expect(page.locator('.place-detail')).toBeVisible();
+  await expect(page.locator('.detail-hero img')).toBeVisible();
+  await expect(page.locator('.detail-badge.pending')).toBeVisible();
+  await page.locator('.detail-sources summary').click();
+  await expect(page.locator('.detail-sources')).toHaveAttribute('open','');
+  await page.screenshot({path:'test-results/dark-popup.png'});
+  await page.locator('.place-dialog-close').click();
+  await page.setViewportSize({width:390,height:844});
+  await page.click('#rastgeleBtn');
+  await expect(page.locator('.place-detail')).toBeVisible();
+  if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth))throw Error('Koyu temada mobil taşma');
+  await page.screenshot({path:'test-results/dark-mobile.png'});
+  await page.locator('.place-dialog-close').click();
+  await page.click('#oneriAc');
+  await expect(page.locator('#oneriDialog')).toBeVisible();
+  await page.screenshot({path:'test-results/dark-form.png'});
+  await page.keyboard.press('Escape');
+  await page.click('#lisansBtn');
+  await expect(page.locator('#kaynakcaDialog')).toBeVisible();
+  await expect(page.locator('#kaynakcaDialog')).toContainText('açık lisanslarla');
+  await page.keyboard.press('Escape');
+  await page.click('#temaDegistir');
+  await expect(page.locator('html')).toHaveAttribute('data-theme','light');
+  for(const size of [{width:1440,height:1050},{width:390,height:844},{width:360,height:640},{width:844,height:390}]) {
+    await page.setViewportSize(size);
+    await page.click('#rastgeleBtn');
+    await expect(page.locator('#mekanDialog')).toBeVisible();
+    const initialTitle=await page.locator('#mekanDetayBaslik').textContent();
+    await page.click('#sonrakiMekan');
+    await expect(page.locator('#mekanDetayBaslik')).not.toHaveText(initialTitle);
+    await page.locator('#mekanDialog .detail-maps').scrollIntoViewIfNeeded();
+    const box=await page.locator('#mekanDialog .detail-maps').boundingBox();
+    const close=await page.locator('.place-dialog-close').boundingBox();
+    if(!box||box.y<0||box.y+box.height>size.height||!close||close.y<0||close.y+close.height>size.height)throw Error('Ayrıntı penceresi ekran dışında: '+JSON.stringify(size));
+    await page.click('.place-dialog-close');
+    await expect(page.locator('#mekanDialog')).not.toBeVisible();
+  }
+  const system=await browser.newContext({colorScheme:'dark'});
+  const p=await system.newPage();await p.route('https://**/*',route=>route.abort());
+  await p.goto(base);await expect(p.locator('html')).toHaveAttribute('data-theme','dark');
+  if(errors.length)throw Error(errors.join('\n'));
+  console.log('Tema testi başarılı: sistem ayarı, tercih kalıcılığı, ayrıntı kartı, kaynaklar, mobil form.');
+ }finally{await browser?.close();await new Promise(resolve=>server.close(resolve));}
+})().catch(e=>{console.error(e.message);process.exitCode=1;});

@@ -14,6 +14,12 @@
   if(broken.length)throw Error('Görsel yüklenemedi: '+broken.join(','));
   await page.click('[data-map-style="uydu"]');
   await expect(page.locator('[data-map-style="uydu"]')).toHaveAttribute('aria-pressed','true');
+  await page.click('#temaDegistir');
+  await expect(page.locator('html')).toHaveAttribute('data-theme','dark');
+  await page.locator('.place-card').first().click();
+  await expect(page.locator('#mekanDialog')).toBeVisible();
+  await page.locator('#mekanDialog .detail-maps').scrollIntoViewIfNeeded();
+  await page.locator('.place-dialog-close').click();
   await page.click('#oneriAc');
   for(const[k,v]of Object.entries({kitap:'Canlı test',yazar:'Test',mekan:'Test',not:'Yalnızca indirme testi'}))await page.locator(`[name="${k}"]`).fill(v);
   const download=page.waitForEvent('download');

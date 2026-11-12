@@ -97,3 +97,9 @@ Yayın için `node tools/publish-pages.cjs`; durum kontrolü için `node tools/p
 Harita görünümleri: OpenStreetMap sokak haritası, Esri uydu + yer adları, Esri sade atlas. “Bina detayı” seçili veya ilk görünür mekâna yakınlaşır. Uydu görüntüsü 2B'dir; 3B bina modeli içermez. Sağlayıcıların görüntü çözünürlüğü ve kapsamı değişebilir. Hover ve klavye odağında fotoğraf önizlemesi, dokunmada ayrıntı penceresi açılır. Lisanslar `fotograflar/README.md` dosyasındadır.
 
 Kitap görselleri `kitaplar/` klasöründe projeye özel SVG tasarımlarıdır; üçüncü taraf yayınevi kapakları değildir. Kitaplardan birebir alıntı eklenmemiştir: kullanılan baskı ve sayfa kaynağı sağlanana kadar mevcut sahne özetleri açıkça taslak olarak gösterilir. Fotoğraflar farklı tarihlerde çekilmiştir; canlı görüntü veya bugünün kesin belgesi olarak değerlendirilmemelidir.
+
+## Tema ve mekân ayrıntıları
+
+Başlıktaki ay/güneş düğmesi açık ve koyu temayı değiştirir; tercih bu tarayıcıda saklanır. Tercih yoksa cihazın tema ayarı kullanılır. Mekân ayrıntıları harita içinde kesilmeyen native dialog panelinde açılır. Masaüstünde sağ panel, telefonda alttan açılan pencere kullanılır; başlık/kapatma ve durak geçişleri sabit, içerik kaydırılabilirdir. Escape ile kapatılabilir. Fotoğraflı hover önizlemesi devam eder.
+
+`npm run test:theme`: tema kalıcılığı, sistem tercihi, mobil formlar ve farklı ekranlarda pencere altı/kapatma erişimi kontrol edilir.
