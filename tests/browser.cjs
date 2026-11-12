@@ -35,7 +35,7 @@ const os=require('node:os');
     await page.click('#rastgeleBtn');
     await expect(page.locator('#mekanDialog')).toBeVisible();
     await expect(page.locator('#mekanDialog')).toContainText('Eskiden / Bugün');
-    await expect(page.locator('#mekanDialog a[href*="google.com/maps"]')).toHaveCount(1);
+    await expect(page.locator('#mekanDialog .detail-maps')).toHaveCount(1);
     await page.keyboard.press('Escape');
     await page.click('#sifirlaBtn');
     await page.fill('#aramaKutusu','nisantasi');

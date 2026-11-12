@@ -103,3 +103,15 @@ Kitap görselleri `kitaplar/` klasöründe projeye özel SVG tasarımlarıdır; 
 Başlıktaki ay/güneş düğmesi açık ve koyu temayı değiştirir; tercih bu tarayıcıda saklanır. Tercih yoksa cihazın tema ayarı kullanılır. Mekân ayrıntıları harita içinde kesilmeyen native dialog panelinde açılır. Masaüstünde sağ panel, telefonda alttan açılan pencere kullanılır; başlık/kapatma ve durak geçişleri sabit, içerik kaydırılabilirdir. Escape ile kapatılabilir. Fotoğraflı hover önizlemesi devam eder.
 
 `npm run test:theme`: tema kalıcılığı, sistem tercihi, mobil formlar ve farklı ekranlarda pencere altı/kapatma erişimi kontrol edilir.
+
+## Çoklu fotoğraf ve 360° gezinme
+
+Her mekânda en az iki görsel, toplam 28 kaynaklı görsel vardır. `mekanlar.js` içindeki `fotograflar` dizisi `src`, `baslik`, `yazar`, `lisans`, `lisansUrl`, `kaynak` alanlarını tutar. Fotoğrafın altındaki küçük görsellerle seçim yapılır; büyük görsele tıklanınca ekran üstünde büyük galeri açılır. Önceki/sonraki düğmeleri, klavye yön tuşları, telefonda yatay sürükleme ve yakınlaştırma düğmesi desteklenir. Escape yalnızca en üstteki fotoğraf penceresini kapatır; mekân dosyası açık kalır. Galeriler açık ve koyu temaya uyumludur.
+
+Fare tekerleği haritada yakınlaştırma/uzaklaştırma yapar. Açık modalda tekerlek içerideki kaydırmayı kontrol eder.
+
+“Google’da 360° gez” resmî Google Maps URL şemasını kullanır ve yeni sekmede Street View açar. Bu, sitenin içinde çalışan bir 3B model veya gömülü Google panorama değildir. Görüntü ve kapsama Google tarafından sağlanır; tahmini konumlar doğru edebî sahneyi veya tam adresi kanıtlamaz. Google görüntüleri indirilmez ve yeniden yayımlanmaz. Site içinde Maps Embed API ile Street View kullanımı ayrıca Google Cloud projesi ve alan adına kısıtlı API anahtarı gerektirir.
+
+Kaynaklar: [Google kullanım rehberi](https://about.google/brand-resource-center/products-and-services/geo-guidelines/), [Street View bağlantı şeması](https://developers.google.com/maps/documentation/urls/guide#street-view-action), [Maps Embed API](https://developers.google.com/maps/documentation/embed/embedding-map). Açıklamalar, üçüncü taraf lisans koşullarının yerine geçmez ve sıfır telif riski garantisi değildir.
+
+`npm run test:gallery`: çoklu görsel seçimi, büyütme, klavye, 360° bağlantısı, fareyle harita yakınlaştırma ve farklı ekranlarda koyu tema kontrolü.

@@ -21,7 +21,7 @@
     $('haritaDurum').hidden = !message;
   }
   if (typeof L !== 'undefined') {
-    map = L.map('harita', { scrollWheelZoom: false }).setView([41.015, 28.979], 11);
+    map = L.map('harita', { scrollWheelZoom:true, wheelPxPerZoomLevel:90, wheelDebounceTime:80 }).setView([41.015, 28.979], 11);
     L.control.scale({ imperial: false, position: 'bottomleft' }).addTo(map);
     const osmCredit = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> katkıcıları';
     const esriCredit = 'Tiles &copy; Esri &mdash; Sources: Esri, Maxar, Earthstar Geographics, and the GIS User Community';
@@ -95,7 +95,7 @@
     const locationLabel = m.kesinlik === 'kesin' ? 'Kesin konum' : 'Tahmini konum';
     const evidence = [m.baski ? `<p><b>Baskı</b> ${esc(m.baski)}</p>` : '', m.kaynaklar?.length ? `<p><b>Konum kaynakları</b> ${m.kaynaklar.map(esc).join(' · ')}</p>` : ''].join('');
     return `<article class="place-detail" style="--book-color:${colors[m.kitap]}">
-      <div class="detail-hero">${photo(m)}<span class="detail-district"><span aria-hidden="true">⌖</span> ${esc(m.ilce)}</span><span class="detail-photo-caption">${esc(m.fotoAciklama || m.mekan)}</span></div>
+      ${window.AtlasMedia.gallery(m)}
       <div class="detail-body"><div class="detail-eyebrow">İSTANBUL'UN EDEBÎ DURAKLARI</div><h3 class="popup-baslik">${esc(m.mekan)}</h3>
       <div class="detail-badges"><span class="detail-badge ${m.kesinlik}"><span aria-hidden="true">${m.kesinlik === 'kesin' ? '◉' : '◌'}</span> ${locationLabel}</span><span class="detail-badge ${m.dogrulandi ? 'verified' : 'pending'}">${m.dogrulandi ? '✓ Doğrulandı' : '◷ Doğrulama bekliyor'}</span></div>
       <div class="detail-book"><img src="${esc(m.kitapGorsel)}" alt="${esc(m.kitap)} için özgün proje görseli"><div><span class="detail-book-label">BU MEKÂNIN KİTABI</span><b>${esc(m.kitap)}</b><span>${esc(m.yazar)} <i>·</i> ${esc(m.yil)}</span></div><span class="detail-book-icon" aria-hidden="true">▤</span></div>
@@ -104,6 +104,7 @@
       <section class="detail-section detail-history"><h4><span aria-hidden="true">◴</span> Eskiden / Bugün</h4><p>${m.eskiBugun ? esc(m.eskiBugun) : 'Bu mekân için karşılaştırma notu henüz eklenmedi.'}</p></section>
       ${m.konumGerekcesi ? `<p class="detail-disclaimer">${esc(m.konumGerekcesi)}</p>` : ''}${m.id === 'oe1' ? '<p class="detail-warning">Yazarla ilişkili mekân; romandaki otelle karıştırılmamalıdır.</p>' : ''}
       <details class="detail-sources"><summary>Fotoğraf ve kaynak bilgisi <span aria-hidden="true">＋</span></summary><p>Fotoğraf: ${esc(m.fotoYazar)} · ${esc(m.fotoLisans)}. <a href="${esc(m.fotoKaynak)}" target="_blank" rel="noopener noreferrer">Kaynağı incele ↗</a>${m.fotoLisansUrl ? ` · <a href="${esc(m.fotoLisansUrl)}" target="_blank" rel="noopener noreferrer">Lisans koşulları</a>` : ''}</p><p>Fotoğraf ölçeklenip çerçeveye sığdırılarak gösterilir. Görselin çekim tarihi bugünü temsil etmeyebilir.</p>${evidence}${!m.alinti ? '<p>Kitap alıntısı ve sayfa bilgisi henüz eklenmedi.</p>' : ''}</details>
+      ${window.AtlasMedia.streetView(m)}
       <a class="detail-maps" href="https://www.google.com/maps?q=${m.enlem},${m.boylam}" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">⌖</span> Google Maps’te aç <span aria-hidden="true">↗</span></a>
       </div></article>`;
   }
@@ -126,6 +127,7 @@
     const content=$('mekanDialogIcerik');
     content.innerHTML=popup(place);
     content.querySelector('.popup-baslik').id='mekanDetayBaslik';
+    window.AtlasMedia.mount(place,content);
     content.scrollTop=0;
     const position=visible.findIndex(m=>m.id===id);
     $('mekanDialogSayac').textContent=`${position+1} / ${visible.length} durak`;
@@ -222,7 +224,7 @@
     $('kaynakcaListesi').append(article);
   });
   const photoCredits=document.createElement('article');
-  photoCredits.innerHTML='<h3>Fotoğraf kaynakları</h3>'+mekanlar.map(m=>`<p>${esc(m.mekan)}: ${esc(m.fotoYazar)} · ${esc(m.fotoLisans)} · <a href="${esc(m.fotoKaynak)}" target="_blank" rel="noopener noreferrer">Wikimedia kaynağı</a>${m.fotoLisansUrl ? ` · <a href="${esc(m.fotoLisansUrl)}" target="_blank" rel="noopener noreferrer">Lisans</a>` : ''}</p>`).join('');
+  photoCredits.innerHTML='<h3>Fotoğraf kaynakları</h3>'+mekanlar.map(m=>`<section class="gallery-credit-group"><h4>${esc(m.mekan)}</h4>${window.AtlasMedia.photos(m).map(p=>`<p>${esc(p.baslik)}<br>${window.AtlasMedia.credit(p)}</p>`).join('')}</section>`).join('');
   $('kaynakcaListesi').append(photoCredits);
   function openDialog(id) { $(id).showModal(); }
   $('kaynakcaBtn').addEventListener('click', () => openDialog('kaynakcaDialog'));
