@@ -1,4 +1,4 @@
-// Örnek edebî kayıtlar doğrulama bekler. Fotoğraf kaynakları: fotograflar/kaynaklar.json
+// Edebî kayıtlar doğrulama bekler. Görsel kaynakları: fotograflar/kaynaklar.json
 const mekanlar = [
   {
     "id": "fh1",
@@ -21,7 +21,8 @@ const mekanlar = [
     "fotoKaynak": "https://commons.wikimedia.org/wiki/File:Turkey-3019_-_Hagia_Sophia_(2216460729).jpg",
     "fotoYazar": "Dennis G. Jarvis",
     "fotoLisans": "CC BY-SA 2.0",
-    "fotoLisansUrl": "https://creativecommons.org/licenses/by-sa/2.0"
+    "fotoLisansUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "kitapGorsel": "kitaplar/kitap-1.svg"
   },
   {
     "id": "fh2",
@@ -44,7 +45,8 @@ const mekanlar = [
     "fotoKaynak": "https://commons.wikimedia.org/wiki/File:Askeri_muze_Istanbul.jpg",
     "fotoYazar": "Mirada",
     "fotoLisans": "CC BY-SA 3.0",
-    "fotoLisansUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+    "fotoLisansUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "kitapGorsel": "kitaplar/kitap-1.svg"
   },
   {
     "id": "mm1",
@@ -67,7 +69,8 @@ const mekanlar = [
     "fotoKaynak": "https://commons.wikimedia.org/wiki/File:Tesvikiye_Mosque,_Istanbul_07.jpg",
     "fotoYazar": "Chapultepec",
     "fotoLisans": "Public domain",
-    "fotoLisansUrl": ""
+    "fotoLisansUrl": "",
+    "kitapGorsel": "kitaplar/kitap-2.svg"
   },
   {
     "id": "mm2",
@@ -90,7 +93,8 @@ const mekanlar = [
     "fotoKaynak": "https://commons.wikimedia.org/wiki/File:The_Museum_of_Innocence.jpg",
     "fotoYazar": "Fuzheado (talk)",
     "fotoLisans": "CC BY-SA 3.0",
-    "fotoLisansUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+    "fotoLisansUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "kitapGorsel": "kitaplar/kitap-2.svg"
   },
   {
     "id": "hz1",
@@ -113,7 +117,8 @@ const mekanlar = [
     "fotoKaynak": "https://commons.wikimedia.org/wiki/File:S%C3%BCleymaniyeMosqueIstanbul_(cropped).jpg",
     "fotoYazar": "Hunanuk",
     "fotoLisans": "CC0",
-    "fotoLisansUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+    "fotoLisansUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "kitapGorsel": "kitaplar/kitap-3.svg"
   },
   {
     "id": "sf1",
@@ -136,7 +141,8 @@ const mekanlar = [
     "fotoKaynak": "https://commons.wikimedia.org/wiki/File:Adalar_5517.jpg",
     "fotoYazar": "User:Darwinek",
     "fotoLisans": "CC BY-SA 3.0",
-    "fotoLisansUrl": "https://creativecommons.org/licenses/by-sa/3.0"
+    "fotoLisansUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "kitapGorsel": "kitaplar/kitap-4.svg"
   },
   {
     "id": "sb1",
@@ -159,7 +165,8 @@ const mekanlar = [
     "fotoKaynak": "https://commons.wikimedia.org/wiki/File:Coluna_de_Constantino_01-2.jpg",
     "fotoYazar": "Stegop",
     "fotoLisans": "CC BY-SA 4.0",
-    "fotoLisansUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+    "fotoLisansUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "kitapGorsel": "kitaplar/kitap-5.svg"
   },
   {
     "id": "ib1",
@@ -182,7 +189,8 @@ const mekanlar = [
     "fotoKaynak": "https://commons.wikimedia.org/wiki/File:Istanbul_asv2020-02_img48_Galata_Tower.jpg",
     "fotoYazar": "A.Savin",
     "fotoLisans": "FAL",
-    "fotoLisansUrl": "http://artlibre.org/licence/lal/en"
+    "fotoLisansUrl": "http://artlibre.org/licence/lal/en",
+    "kitapGorsel": "kitaplar/kitap-6.svg"
   },
   {
     "id": "oe1",
@@ -205,7 +213,8 @@ const mekanlar = [
     "fotoKaynak": "https://commons.wikimedia.org/wiki/File:Pera_Palace_Hotel_Jumeirah_-_panoramio.jpg",
     "fotoYazar": "qwesy qwesy",
     "fotoLisans": "CC BY 3.0",
-    "fotoLisansUrl": "https://creativecommons.org/licenses/by/3.0"
+    "fotoLisansUrl": "https://creativecommons.org/licenses/by/3.0",
+    "kitapGorsel": "kitaplar/kitap-7.svg"
   },
   {
     "id": "oe2",
@@ -228,8 +237,8 @@ const mekanlar = [
     "fotoKaynak": "https://commons.wikimedia.org/wiki/File:Bahnhofsfront-Istanbul-Sirkeci_retouched.jpg",
     "fotoYazar": "Bahnhofsfront-Istanbul-Sirkeci.jpg: Martin Dürrschnabel\nderivative work: Dha (talk)",
     "fotoLisans": "CC BY-SA 2.5",
-    "fotoLisansUrl": "https://creativecommons.org/licenses/by-sa/2.5"
+    "fotoLisansUrl": "https://creativecommons.org/licenses/by-sa/2.5",
+    "kitapGorsel": "kitaplar/kitap-7.svg"
   }
 ];
-
-if (typeof module !== "undefined") module.exports = mekanlar;
+if(typeof module!=="undefined")module.exports=mekanlar;

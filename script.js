@@ -79,6 +79,13 @@
     });
     $('lejant').append(button);
   });
+  books.forEach(book=>{
+    const m=mekanlar.find(m=>m.kitap===book);
+    const button=document.createElement('button');button.type='button';button.className='book-card';
+    button.innerHTML=`<img src="${esc(m.kitapGorsel)}" alt="${esc(book)} için özgün proje görseli" loading="lazy"><span>${esc(book)}</span><small>${esc(m.yazar)}</small>`;
+    button.addEventListener('click',()=>{ui.book.value=book;ui.author.value='hepsi';ui.search.value='';render();$('kesfet').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});});
+    $('kitaplik').append(button);
+  });
   function photo(m) {
     // Fotoğraflar yalnızca proje içindeki fotograflar/ klasöründen yüklenir.
     if (!m.foto || !/^fotograflar\/[\w/ .-]+\.(jpg|jpeg|png|webp|gif|avif)$/i.test(m.foto) || m.foto.includes('..')) return '';
@@ -86,7 +93,7 @@
   }
   function popup(m) {
     const evidence = [m.baski ? `<p>Baskı: ${esc(m.baski)}</p>` : '', m.kaynaklar?.length ? `<p>Konum kaynakları: ${m.kaynaklar.map(esc).join(' · ')}</p>` : ''].join('');
-    return `${photo(m)}<div class="popup-baslik">${esc(m.mekan)}</div><div class="popup-kitap">${esc(m.kitap)} (${esc(m.yil)})<br>${esc(m.yazar)}</div>${m.alinti ? `<blockquote class="popup-alinti">“${esc(m.alinti)}” <small>(${esc(m.sayfa)})</small></blockquote>` : ''}<p>${esc(m.ozet)}</p><span class="popup-label">Eskiden / Bugün</span><p>${m.eskiBugun ? esc(m.eskiBugun) : 'Bu mekân için karşılaştırma notu henüz eklenmedi.'}</p>${m.konumGerekcesi ? `<p>${esc(m.konumGerekcesi)}</p>` : ''}<div class="popup-not">Konum: ${esc(m.kesinlik)} · ${m.dogrulandi ? '✓ Doğrulandı' : 'Kitaptan doğrulanacak'}${!m.alinti ? '<br>Alıntı ve sayfa bilgisi henüz eklenmedi.' : ''}${m.fotoKaynak ? `<br>Fotoğraf: ${esc(m.fotoYazar)} · ${esc(m.fotoLisans)} · <a href="${esc(m.fotoKaynak)}" target="_blank" rel="noopener noreferrer">Kaynak</a>` : ''}${m.id === 'oe1' ? '<br>Yazarla ilişkili mekân; romandaki otelle karıştırılmamalıdır.' : ''}${evidence}</div><a href="https://www.google.com/maps?q=${m.enlem},${m.boylam}" target="_blank" rel="noopener noreferrer">Google Maps’te aç ↗</a>`;
+    return `${photo(m)}<div class="popup-book-visual"><img src="${esc(m.kitapGorsel)}" alt="${esc(m.kitap)} için özgün proje görseli"><span>${esc(m.kitap)}<small>${esc(m.yazar)}</small></span></div><div class="popup-baslik">${esc(m.mekan)}</div><div class="popup-kitap">${esc(m.kitap)} (${esc(m.yil)})<br>${esc(m.yazar)}</div>${m.alinti ? `<blockquote class="popup-alinti">“${esc(m.alinti)}” <small>(${esc(m.sayfa)})</small></blockquote>` : ''}<span class="popup-label">${m.dogrulandi ? 'Sahne özeti' : 'Taslak sahne özeti · birebir alıntı değildir'}</span><p>${esc(m.ozet)}</p><span class="popup-label">Eskiden / Bugün</span><p>${m.eskiBugun ? esc(m.eskiBugun) : 'Bu mekân için karşılaştırma notu henüz eklenmedi.'}</p>${m.konumGerekcesi ? `<p>${esc(m.konumGerekcesi)}</p>` : ''}<div class="popup-not">Konum: ${esc(m.kesinlik)} · ${m.dogrulandi ? '✓ Doğrulandı' : 'Kitaptan doğrulanacak'}${!m.alinti ? '<br>Alıntı ve sayfa bilgisi henüz eklenmedi.' : ''}${m.fotoKaynak ? `<br>Fotoğraf: ${esc(m.fotoYazar)} · ${esc(m.fotoLisans)} · <a href="${esc(m.fotoKaynak)}" target="_blank" rel="noopener noreferrer">Kaynak</a>` : ''}${m.id === 'oe1' ? '<br>Yazarla ilişkili mekân; romandaki otelle karıştırılmamalıdır.' : ''}${evidence}</div><a href="https://www.google.com/maps?q=${m.enlem},${m.boylam}" target="_blank" rel="noopener noreferrer">Google Maps’te aç ↗</a>`;
   }
   function fit() {
     if (map && visible.length) map.fitBounds(L.latLngBounds(visible.map(m => [m.enlem,m.boylam])), { padding: [40,40], maxZoom: 14 });
