@@ -1,4 +1,4 @@
-// Edebî kayıtlar doğrulama bekler.
+// Edebî kayıtlar doğrulama bekler. Fotoğraf lisansları: fotograflar/README.md
 const mekanlar = [
   {
     "id": "fh1",
@@ -22,7 +22,33 @@ const mekanlar = [
     "fotoYazar": "Ezzeldin.Elbaksawy",
     "fotoLisans": "CC BY-SA 4.0",
     "fotoLisansUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "kitapGorsel": "kitaplar/kitap-1.svg"
+    "kitapGorsel": "kitaplar/kitap-1.svg",
+    "fotograflar": [
+      {
+        "src": "fotograflar/fh1.jpg",
+        "baslik": "Fatih Camii; semti temsil eden görüntü",
+        "yazar": "Ezzeldin.Elbaksawy",
+        "lisans": "CC BY-SA 4.0",
+        "lisansUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "kaynak": "https://commons.wikimedia.org/wiki/File:Sultan_Muhammet_Fatih_camii_(cropped).jpg"
+      },
+      {
+        "src": "fotograflar/fh1-galeri-1.jpg",
+        "baslik": "Fatih Camii, 1888–1910 tarihli kaynak görüntüsü",
+        "yazar": "Sebah & Joaillier, photographer",
+        "lisans": "Public domain",
+        "lisansUrl": "",
+        "kaynak": "https://commons.wikimedia.org/wiki/File:Fatih_Camii_1888-1910_y%C4%B1llar%C4%B1.jpg"
+      },
+      {
+        "src": "fotograflar/fh1-galeri-2.jpg",
+        "baslik": "Fatih Camii çevresinden farklı bir görünüm",
+        "yazar": "Sitomon",
+        "lisans": "CC BY-SA 2.0",
+        "lisansUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+        "kaynak": "https://commons.wikimedia.org/wiki/File:Fatih_Mosque5.jpg"
+      }
+    ]
   },
   {
     "id": "fh2",
@@ -46,7 +72,25 @@ const mekanlar = [
     "fotoYazar": "Mirada",
     "fotoLisans": "CC BY-SA 3.0",
     "fotoLisansUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-    "kitapGorsel": "kitaplar/kitap-1.svg"
+    "kitapGorsel": "kitaplar/kitap-1.svg",
+    "fotograflar": [
+      {
+        "src": "fotograflar/fh2-photo.jpg",
+        "baslik": "Harbiye Askerî Müze; bölgeyi temsil eden görüntü",
+        "yazar": "Mirada",
+        "lisans": "CC BY-SA 3.0",
+        "lisansUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "kaynak": "https://commons.wikimedia.org/wiki/File:Askeri_muze_Istanbul.jpg"
+      },
+      {
+        "src": "fotograflar/fh2-galeri-1.jpg",
+        "baslik": "Harbiye Askerî Müze; bölgeyi temsil eden ek görüntü",
+        "yazar": "Mirada",
+        "lisans": "CC BY-SA 3.0",
+        "lisansUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "kaynak": "https://commons.wikimedia.org/wiki/File:Askeri_muze_Istanbul.jpg"
+      }
+    ]
   },
   {
     "id": "mm1",
@@ -70,7 +114,33 @@ const mekanlar = [
     "fotoYazar": "Chapultepec",
     "fotoLisans": "Public domain",
     "fotoLisansUrl": "",
-    "kitapGorsel": "kitaplar/kitap-2.svg"
+    "kitapGorsel": "kitaplar/kitap-2.svg",
+    "fotograflar": [
+      {
+        "src": "fotograflar/mm1.jpg",
+        "baslik": "Teşvikiye Camii; çevreyi temsil eden görüntü",
+        "yazar": "Chapultepec",
+        "lisans": "Public domain",
+        "lisansUrl": "",
+        "kaynak": "https://commons.wikimedia.org/wiki/File:Tesvikiye_Mosque,_Istanbul_07.jpg"
+      },
+      {
+        "src": "fotograflar/mm1-galeri-1.jpg",
+        "baslik": "Teşvikiye Camii; mahalle çevresini temsil eden görünüm",
+        "yazar": "The original uploader was Cjs2111 at English Wikipedia.",
+        "lisans": "CC BY 2.5",
+        "lisansUrl": "https://creativecommons.org/licenses/by/2.5",
+        "kaynak": "https://commons.wikimedia.org/wiki/File:Teskmosque.jpg"
+      },
+      {
+        "src": "fotograflar/mm1-galeri-2.jpg",
+        "baslik": "Teşvikiye Camii mimarisinden farklı bir açı",
+        "yazar": "Chapultepec",
+        "lisans": "Public domain",
+        "lisansUrl": "",
+        "kaynak": "https://commons.wikimedia.org/wiki/File:Tesvikiye_Mosque,_Istanbul_08.jpg"
+      }
+    ]
   },
   {
     "id": "mm2",
@@ -94,7 +164,25 @@ const mekanlar = [
     "fotoYazar": "Fuzheado (talk)",
     "fotoLisans": "CC BY-SA 3.0",
     "fotoLisansUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-    "kitapGorsel": "kitaplar/kitap-2.svg"
+    "kitapGorsel": "kitaplar/kitap-2.svg",
+    "fotograflar": [
+      {
+        "src": "fotograflar/mm2.jpg",
+        "baslik": "Masumiyet Müzesi dış görünümü",
+        "yazar": "Fuzheado (talk)",
+        "lisans": "CC BY-SA 3.0",
+        "lisansUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "kaynak": "https://commons.wikimedia.org/wiki/File:The_Museum_of_Innocence.jpg"
+      },
+      {
+        "src": "fotograflar/mm2-galeri-1.jpg",
+        "baslik": "Masumiyet Müzesi binası",
+        "yazar": "Lambiam",
+        "lisans": "CC BY-SA 3.0",
+        "lisansUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "kaynak": "https://commons.wikimedia.org/wiki/File:Masumiyet_M%C3%BCzesi%27nin_binas%C4%B1.JPG"
+      }
+    ]
   },
   {
     "id": "hz1",
@@ -118,7 +206,33 @@ const mekanlar = [
     "fotoYazar": "Hunanuk",
     "fotoLisans": "CC0",
     "fotoLisansUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-    "kitapGorsel": "kitaplar/kitap-3.svg"
+    "kitapGorsel": "kitaplar/kitap-3.svg",
+    "fotograflar": [
+      {
+        "src": "fotograflar/hz1.jpg",
+        "baslik": "Süleymaniye Camii",
+        "yazar": "Hunanuk",
+        "lisans": "CC0",
+        "lisansUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "kaynak": "https://commons.wikimedia.org/wiki/File:S%C3%BCleymaniyeMosqueIstanbul_(cropped).jpg"
+      },
+      {
+        "src": "fotograflar/hz1-galeri-1.jpg",
+        "baslik": "Süleymaniye Camii avlusu",
+        "yazar": "Myrabella",
+        "lisans": "CC BY-SA 3.0",
+        "lisansUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "kaynak": "https://commons.wikimedia.org/wiki/File:Cour_mosquee_Suleymaniye_Istanbul.jpg"
+      },
+      {
+        "src": "fotograflar/hz1-galeri-2.jpg",
+        "baslik": "Süleymaniye Camii çevresinden görünüm",
+        "yazar": "Georges Jansoone JoJan",
+        "lisans": "CC BY 3.0",
+        "lisansUrl": "https://creativecommons.org/licenses/by/3.0",
+        "kaynak": "https://commons.wikimedia.org/wiki/File:Istanbul.S%C3%BCleymaniye02.JPG"
+      }
+    ]
   },
   {
     "id": "sf1",
@@ -142,7 +256,33 @@ const mekanlar = [
     "fotoYazar": "User:Darwinek",
     "fotoLisans": "CC BY-SA 3.0",
     "fotoLisansUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-    "kitapGorsel": "kitaplar/kitap-4.svg"
+    "kitapGorsel": "kitaplar/kitap-4.svg",
+    "fotograflar": [
+      {
+        "src": "fotograflar/sf1.jpg",
+        "baslik": "Burgazada; adayı temsil eden görüntü",
+        "yazar": "User:Darwinek",
+        "lisans": "CC BY-SA 3.0",
+        "lisansUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "kaynak": "https://commons.wikimedia.org/wiki/File:Adalar_5517.jpg"
+      },
+      {
+        "src": "fotograflar/sf1-galeri-1.jpg",
+        "baslik": "Burgazada çevresinden görünüm",
+        "yazar": "User:Darwinek",
+        "lisans": "CC BY-SA 3.0",
+        "lisansUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "kaynak": "https://commons.wikimedia.org/wiki/File:Adalar_6964.jpg"
+      },
+      {
+        "src": "fotograflar/sf1-galeri-2.jpg",
+        "baslik": "Burgazada sokaklarından bir görünüm",
+        "yazar": "Ravages",
+        "lisans": "CC BY-SA 4.0",
+        "lisansUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "kaynak": "https://commons.wikimedia.org/wiki/File:Burgazada-sokak.jpg"
+      }
+    ]
   },
   {
     "id": "sb1",
@@ -166,7 +306,33 @@ const mekanlar = [
     "fotoYazar": "Stegop",
     "fotoLisans": "CC BY-SA 4.0",
     "fotoLisansUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-    "kitapGorsel": "kitaplar/kitap-5.svg"
+    "kitapGorsel": "kitaplar/kitap-5.svg",
+    "fotograflar": [
+      {
+        "src": "fotograflar/sb1.jpg",
+        "baslik": "Çemberlitaş; tahmini mahalle çevresini temsil eden görüntü",
+        "yazar": "Stegop",
+        "lisans": "CC BY-SA 4.0",
+        "lisansUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "kaynak": "https://commons.wikimedia.org/wiki/File:Coluna_de_Constantino_01-2.jpg"
+      },
+      {
+        "src": "fotograflar/sb1-galeri-1.jpg",
+        "baslik": "Çemberlitaş Sütunu; tahmini mahalle çevresi",
+        "yazar": "Sandstein",
+        "lisans": "CC BY 3.0",
+        "lisansUrl": "https://creativecommons.org/licenses/by/3.0",
+        "kaynak": "https://commons.wikimedia.org/wiki/File:Column_of_Constantine,_July_2010.jpg"
+      },
+      {
+        "src": "fotograflar/sb1-galeri-2.jpg",
+        "baslik": "Çemberlitaş Sütunu için tarihî betimleme; fotoğraf değildir",
+        "yazar": "User:Marsyas",
+        "lisans": "Public domain",
+        "lisansUrl": "",
+        "kaynak": "https://commons.wikimedia.org/wiki/File:Gurlitt_Constantine_column_with_statue.jpg"
+      }
+    ]
   },
   {
     "id": "ib1",
@@ -190,7 +356,33 @@ const mekanlar = [
     "fotoYazar": "A.Savin",
     "fotoLisans": "FAL",
     "fotoLisansUrl": "http://artlibre.org/licence/lal/en",
-    "kitapGorsel": "kitaplar/kitap-6.svg"
+    "kitapGorsel": "kitaplar/kitap-6.svg",
+    "fotograflar": [
+      {
+        "src": "fotograflar/ib1.jpg",
+        "baslik": "Galata Kulesi; çevreyi temsil eden görüntü",
+        "yazar": "A.Savin",
+        "lisans": "FAL",
+        "lisansUrl": "http://artlibre.org/licence/lal/en",
+        "kaynak": "https://commons.wikimedia.org/wiki/File:Istanbul_asv2020-02_img48_Galata_Tower.jpg"
+      },
+      {
+        "src": "fotograflar/ib1-galeri-1.jpg",
+        "baslik": "Galata Kulesi seyir bölümünden çevreye bakış",
+        "yazar": "Mark Ahsmann",
+        "lisans": "CC BY-SA 3.0",
+        "lisansUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "kaynak": "https://commons.wikimedia.org/wiki/File:20131205_Istanbul_311.jpg"
+      },
+      {
+        "src": "fotograflar/ib1-galeri-2.jpg",
+        "baslik": "Galata Kulesi iç mimarisinden bir ayrıntı",
+        "yazar": "Fatih Yasin Köroğlu",
+        "lisans": "CC BY-SA 4.0",
+        "lisansUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "kaynak": "https://commons.wikimedia.org/wiki/File:A_circular_window_of_the_Galata_Tower_(5th_floor)-3.jpg"
+      }
+    ]
   },
   {
     "id": "oe1",
@@ -214,7 +406,33 @@ const mekanlar = [
     "fotoYazar": "qwesy qwesy",
     "fotoLisans": "CC BY 3.0",
     "fotoLisansUrl": "https://creativecommons.org/licenses/by/3.0",
-    "kitapGorsel": "kitaplar/kitap-7.svg"
+    "kitapGorsel": "kitaplar/kitap-7.svg",
+    "fotograflar": [
+      {
+        "src": "fotograflar/oe1.jpg",
+        "baslik": "Pera Palace Oteli",
+        "yazar": "qwesy qwesy",
+        "lisans": "CC BY 3.0",
+        "lisansUrl": "https://creativecommons.org/licenses/by/3.0",
+        "kaynak": "https://commons.wikimedia.org/wiki/File:Pera_Palace_Hotel_Jumeirah_-_panoramio.jpg"
+      },
+      {
+        "src": "fotograflar/oe1-galeri-1.jpg",
+        "baslik": "Pera Palace Oteli çevresinden görünüm",
+        "yazar": "A.Savin",
+        "lisans": "FAL",
+        "lisansUrl": "http://artlibre.org/licence/lal/en",
+        "kaynak": "https://commons.wikimedia.org/wiki/File:Istanbul_asv2020-02_img39_Pera_Palace_Hotel.jpg"
+      },
+      {
+        "src": "fotograflar/oe1-galeri-2.jpg",
+        "baslik": "Pera Palace Oteli; farklı bir açı",
+        "yazar": "A.Savin",
+        "lisans": "FAL",
+        "lisansUrl": "http://artlibre.org/licence/lal/en",
+        "kaynak": "https://commons.wikimedia.org/wiki/File:Istanbul_asv2020-02_img43_Pera_Palace_Hotel.jpg"
+      }
+    ]
   },
   {
     "id": "oe2",
@@ -238,7 +456,33 @@ const mekanlar = [
     "fotoYazar": "Bahnhofsfront-Istanbul-Sirkeci.jpg: Martin Dürrschnabel\nderivative work: Dha (talk)",
     "fotoLisans": "CC BY-SA 2.5",
     "fotoLisansUrl": "https://creativecommons.org/licenses/by-sa/2.5",
-    "kitapGorsel": "kitaplar/kitap-7.svg"
+    "kitapGorsel": "kitaplar/kitap-7.svg",
+    "fotograflar": [
+      {
+        "src": "fotograflar/oe2.jpg",
+        "baslik": "Sirkeci Garı",
+        "yazar": "Bahnhofsfront-Istanbul-Sirkeci.jpg: Martin Dürrschnabel\nderivative work: Dha (talk)",
+        "lisans": "CC BY-SA 2.5",
+        "lisansUrl": "https://creativecommons.org/licenses/by-sa/2.5",
+        "kaynak": "https://commons.wikimedia.org/wiki/File:Bahnhofsfront-Istanbul-Sirkeci_retouched.jpg"
+      },
+      {
+        "src": "fotograflar/oe2-galeri-2.jpg",
+        "baslik": "Sirkeci Garı saatinden bir ayrıntı",
+        "yazar": "Ail Subway",
+        "lisans": "CC BY 3.0",
+        "lisansUrl": "https://creativecommons.org/licenses/by/3.0",
+        "kaynak": "https://commons.wikimedia.org/wiki/File:Clock_Of_Sirkeci_Terminus.jpg"
+      },
+      {
+        "src": "fotograflar/oe2-galeri-1.jpg",
+        "baslik": "Sirkeci Garı iç mekânı",
+        "yazar": "User:Themightyquill",
+        "lisans": "CC BY-SA 2.5",
+        "lisansUrl": "https://creativecommons.org/licenses/by-sa/2.5",
+        "kaynak": "https://commons.wikimedia.org/wiki/File:Sirkeci_inside.jpg"
+      }
+    ]
   }
 ];
 if(typeof module!=="undefined")module.exports=mekanlar;
