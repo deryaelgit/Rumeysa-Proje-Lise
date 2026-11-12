@@ -110,6 +110,8 @@ Başlıktaki ay/güneş düğmesi açık ve koyu temayı değiştirir; tercih bu
 
 ## Çoklu fotoğraf ve 360° gezinme
 
+1922 haritasıyla zaman kaydırıcısı, Huzur yaya rehberi (mesafe, süre, GPX), editoryal duygu renkleri ve isteğe bağlı sentetik şehir atmosferi eklendi. Kullanım, kaynaklar ve sınırlar: [yaratıcı özellikler](docs/yaratici-ozellikler.md).
+
 Her mekânda en az iki görsel, toplam 28 kaynaklı görsel vardır. `mekanlar.js` içindeki `fotograflar` dizisi `src`, `baslik`, `yazar`, `lisans`, `lisansUrl`, `kaynak` alanlarını tutar. Fotoğrafın altındaki küçük görsellerle seçim yapılır; büyük görsele tıklanınca ekran üstünde büyük galeri açılır. Önceki/sonraki düğmeleri, klavye yön tuşları, telefonda yatay sürükleme ve yakınlaştırma düğmesi desteklenir. Escape yalnızca en üstteki fotoğraf penceresini kapatır; mekân dosyası açık kalır. Galeriler açık ve koyu temaya uyumludur.
 
 Fare tekerleği haritada yakınlaştırma/uzaklaştırma yapar. Açık modalda tekerlek içerideki kaydırmayı kontrol eder.

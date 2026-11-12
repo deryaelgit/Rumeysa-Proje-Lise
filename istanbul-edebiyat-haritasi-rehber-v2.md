@@ -698,3 +698,8 @@ Başvuru ölçütleri her yıl yayımlanan **çağrı rehberinde** belirtilir. R
 - **İngilizce dil seçeneği:** Yabancı ziyaretçiler için
 
 Takıldığınız yerde kodu ve F12 konsolundaki hata mesajını bana yapıştırın. Başarılar!
+
+
+## Uygulanan yaratıcı özellikler — 12 Kasım 2026
+
+1922 arşiv haritası kaydırıcısı, beş duraklı Huzur yaya rehberi (mesafe, süre, GPX), editoryal duygu renkleri ve isteğe bağlı sentetik ses atmosferi eklendi. Kaynaklar, kullanım ve sınırlar: [Yaratıcı özellikler](docs/yaratici-ozellikler.md).
