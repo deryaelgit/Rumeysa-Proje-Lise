@@ -18,6 +18,14 @@
   await expect(page.locator('html')).toHaveAttribute('data-theme','dark');
   await page.locator('.place-card').first().click();
   await expect(page.locator('#mekanDialog')).toBeVisible();
+  await expect(page.locator('.media-thumbs button')).toHaveCount(3);
+  await page.locator('.media-main').click();
+  await expect(page.locator('#fotografDialog')).toBeVisible();
+  await page.click('#fotoSonraki');
+  await expect(page.locator('#fotoSayac')).toHaveText('2 / 3');
+  await expect(page.locator('#fotoLisans')).not.toBeEmpty();
+  await page.click('#fotoKapat');
+  await expect(page.locator('.streetview-link')).toHaveAttribute('href',/map_action=pano/);
   await page.locator('#mekanDialog .detail-maps').scrollIntoViewIfNeeded();
   await page.locator('.place-dialog-close').click();
   await page.click('#oneriAc');
