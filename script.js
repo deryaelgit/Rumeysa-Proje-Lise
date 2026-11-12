@@ -92,9 +92,22 @@
     return `<img class="popup-foto" src="${esc(m.foto)}" alt="${esc(m.fotoAciklama || m.mekan)}" loading="lazy">`;
   }
   function popup(m) {
-    const evidence = [m.baski ? `<p>Baskı: ${esc(m.baski)}</p>` : '', m.kaynaklar?.length ? `<p>Konum kaynakları: ${m.kaynaklar.map(esc).join(' · ')}</p>` : ''].join('');
-    return `${photo(m)}<div class="popup-book-visual"><img src="${esc(m.kitapGorsel)}" alt="${esc(m.kitap)} için özgün proje görseli"><span>${esc(m.kitap)}<small>${esc(m.yazar)}</small></span></div><div class="popup-baslik">${esc(m.mekan)}</div><div class="popup-kitap">${esc(m.kitap)} (${esc(m.yil)})<br>${esc(m.yazar)}</div>${m.alinti ? `<blockquote class="popup-alinti">“${esc(m.alinti)}” <small>(${esc(m.sayfa)})</small></blockquote>` : ''}<span class="popup-label">${m.dogrulandi ? 'Sahne özeti' : 'Taslak sahne özeti · birebir alıntı değildir'}</span><p>${esc(m.ozet)}</p><span class="popup-label">Eskiden / Bugün</span><p>${m.eskiBugun ? esc(m.eskiBugun) : 'Bu mekân için karşılaştırma notu henüz eklenmedi.'}</p>${m.konumGerekcesi ? `<p>${esc(m.konumGerekcesi)}</p>` : ''}<div class="popup-not">Konum: ${esc(m.kesinlik)} · ${m.dogrulandi ? '✓ Doğrulandı' : 'Kitaptan doğrulanacak'}${!m.alinti ? '<br>Alıntı ve sayfa bilgisi henüz eklenmedi.' : ''}${m.fotoKaynak ? `<br>Fotoğraf: ${esc(m.fotoYazar)} · ${esc(m.fotoLisans)} · <a href="${esc(m.fotoKaynak)}" target="_blank" rel="noopener noreferrer">Kaynak</a>` : ''}${m.id === 'oe1' ? '<br>Yazarla ilişkili mekân; romandaki otelle karıştırılmamalıdır.' : ''}${evidence}</div><a href="https://www.google.com/maps?q=${m.enlem},${m.boylam}" target="_blank" rel="noopener noreferrer">Google Maps’te aç ↗</a>`;
+    const locationLabel = m.kesinlik === 'kesin' ? 'Kesin konum' : 'Tahmini konum';
+    const evidence = [m.baski ? `<p><b>Baskı</b> ${esc(m.baski)}</p>` : '', m.kaynaklar?.length ? `<p><b>Konum kaynakları</b> ${m.kaynaklar.map(esc).join(' · ')}</p>` : ''].join('');
+    return `<article class="place-detail" style="--book-color:${colors[m.kitap]}">
+      <div class="detail-hero">${photo(m)}<span class="detail-district"><span aria-hidden="true">⌖</span> ${esc(m.ilce)}</span><span class="detail-photo-caption">${esc(m.fotoAciklama || m.mekan)}</span></div>
+      <div class="detail-body"><div class="detail-eyebrow">İSTANBUL'UN EDEBÎ DURAKLARI</div><h3 class="popup-baslik">${esc(m.mekan)}</h3>
+      <div class="detail-badges"><span class="detail-badge ${m.kesinlik}"><span aria-hidden="true">${m.kesinlik === 'kesin' ? '◉' : '◌'}</span> ${locationLabel}</span><span class="detail-badge ${m.dogrulandi ? 'verified' : 'pending'}">${m.dogrulandi ? '✓ Doğrulandı' : '◷ Doğrulama bekliyor'}</span></div>
+      <div class="detail-book"><img src="${esc(m.kitapGorsel)}" alt="${esc(m.kitap)} için özgün proje görseli"><div><span class="detail-book-label">BU MEKÂNIN KİTABI</span><b>${esc(m.kitap)}</b><span>${esc(m.yazar)} <i>·</i> ${esc(m.yil)}</span></div><span class="detail-book-icon" aria-hidden="true">▤</span></div>
+      ${m.alinti ? `<blockquote class="detail-quote">“${esc(m.alinti)}”<cite>${esc(m.sayfa)}${m.baski ? ` · ${esc(m.baski)}` : ''}</cite></blockquote>` : ''}
+      <section class="detail-section"><h4><span aria-hidden="true">✎</span> Hikâyedeki yeri</h4><p>${esc(m.ozet)}</p>${!m.alinti ? '<span class="detail-disclaimer">Taslak sahne özeti · birebir alıntı değildir.</span>' : ''}</section>
+      <section class="detail-section detail-history"><h4><span aria-hidden="true">◴</span> Eskiden / Bugün</h4><p>${m.eskiBugun ? esc(m.eskiBugun) : 'Bu mekân için karşılaştırma notu henüz eklenmedi.'}</p></section>
+      ${m.konumGerekcesi ? `<p class="detail-disclaimer">${esc(m.konumGerekcesi)}</p>` : ''}${m.id === 'oe1' ? '<p class="detail-warning">Yazarla ilişkili mekân; romandaki otelle karıştırılmamalıdır.</p>' : ''}
+      <details class="detail-sources"><summary>Fotoğraf ve kaynak bilgisi <span aria-hidden="true">＋</span></summary><p>Fotoğraf: ${esc(m.fotoYazar)} · ${esc(m.fotoLisans)}. <a href="${esc(m.fotoKaynak)}" target="_blank" rel="noopener noreferrer">Kaynağı incele ↗</a>${m.fotoLisansUrl ? ` · <a href="${esc(m.fotoLisansUrl)}" target="_blank" rel="noopener noreferrer">Lisans koşulları</a>` : ''}</p><p>Fotoğraf ölçeklenip çerçeveye sığdırılarak gösterilir. Görselin çekim tarihi bugünü temsil etmeyebilir.</p>${evidence}${!m.alinti ? '<p>Kitap alıntısı ve sayfa bilgisi henüz eklenmedi.</p>' : ''}</details>
+      <a class="detail-maps" href="https://www.google.com/maps?q=${m.enlem},${m.boylam}" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">⌖</span> Google Maps’te aç <span aria-hidden="true">↗</span></a>
+      </div></article>`;
   }
+
   function fit() {
     if (map && visible.length) map.fitBounds(L.latLngBounds(visible.map(m => [m.enlem,m.boylam])), { padding: [40,40], maxZoom: 14 });
   }
@@ -107,22 +120,26 @@
     });
     markers.forEach((marker, markerId) => marker.getElement()?.querySelector('.map-marker')?.classList.toggle('selected', markerId === id));
     const marker = markers.get(id);
-    if (marker) {
-      if (pan) map.setView(marker.getLatLng(), 15, { animate: !window.matchMedia('(prefers-reduced-motion: reduce)').matches });
-      marker.openPopup();
-    } else if (!map) {
-      const m = visible.find(place => place.id === id);
-      const card = [...document.querySelectorAll('.place-card')].find(c => c.dataset.id === id);
-      if (m && card && !card.nextElementSibling?.classList.contains('fallback-details')) {
-        document.querySelectorAll('.fallback-details').forEach(el => el.remove());
-        const detail = document.createElement('div');
-        detail.className = 'fallback-details';
-        detail.style.padding = '18px';
-        detail.innerHTML = popup(m);
-        card.after(detail);
-      }
-    }
+    if (marker && pan) map.setView(marker.getLatLng(),15,{animate:!window.matchMedia('(prefers-reduced-motion: reduce)').matches});
+    const place=visible.find(m=>m.id===id);
+    if (!place) return;
+    const content=$('mekanDialogIcerik');
+    content.innerHTML=popup(place);
+    content.querySelector('.popup-baslik').id='mekanDetayBaslik';
+    content.scrollTop=0;
+    const position=visible.findIndex(m=>m.id===id);
+    $('mekanDialogSayac').textContent=`${position+1} / ${visible.length} durak`;
+    $('oncekiMekan').disabled=visible.length<2;
+    $('sonrakiMekan').disabled=visible.length<2;
+    if (!$('mekanDialog').open) $('mekanDialog').showModal();
   }
+  $('mekanDialog').querySelector('.place-dialog-close').addEventListener('click',()=>$('mekanDialog').close());
+  $('mekanDialog').addEventListener('click',event=>{if(event.target===$('mekanDialog')){const rect=$('mekanDialog').getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)$('mekanDialog').close();}});
+  $('mekanDialog').addEventListener('close',()=>{document.body.classList.remove('detail-open');});
+  function adjacent(step) {const index=visible.findIndex(m=>m.id===activeId);const place=visible[(index+step+visible.length)%visible.length];if(place)selectPlace(place.id,false);}
+  $('oncekiMekan').addEventListener('click',()=>adjacent(-1));
+  $('sonrakiMekan').addEventListener('click',()=>adjacent(1));
+
   function render() {
     visible = E.filter(mekanlar, { search: ui.search.value, book: ui.book.value, author: ui.author.value });
     activeId = null;
@@ -152,7 +169,7 @@
           title: `${m.mekan} · ${m.kitap}`,
           alt: `${m.mekan} konum işaretçisi`,
           keyboard: true
-        }).addTo(markersLayer).bindPopup(popup(m), { maxWidth:310, maxHeight:330 });
+        }).addTo(markersLayer);
         marker.bindTooltip(`<div class="hover-photo">${photo(m)}<div><b>${esc(m.mekan)}</b><span>${esc(m.kitap)}</span><small>${esc(m.fotoAciklama || 'Mekân görseli')}</small><small>${esc(m.fotoYazar)} · ${esc(m.fotoLisans)}</small></div></div>`, {direction:'top',offset:[0,-19],className:'photo-tooltip',opacity:1});
         const el=marker.getElement(); el?.addEventListener('focus',()=>marker.openTooltip()); el?.addEventListener('blur',()=>marker.closeTooltip());
         marker.on('click', () => selectPlace(m.id, false));
@@ -209,6 +226,7 @@
   $('kaynakcaListesi').append(photoCredits);
   function openDialog(id) { $(id).showModal(); }
   $('kaynakcaBtn').addEventListener('click', () => openDialog('kaynakcaDialog'));
+  $('lisansBtn').addEventListener('click',()=>openDialog('kaynakcaDialog'));
   document.querySelectorAll('.close-dialog').forEach(button => button.addEventListener('click', () => button.closest('dialog').close()));
   const sessionSuggestions = [];
   const downloadMode = window.ATLAS_CONFIG?.suggestions === 'download';
