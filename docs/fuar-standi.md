@@ -24,4 +24,8 @@ Harita altlığı internet ister. İnternet kesilirse liste ve işaretçiler kul
 
 ## Canlı statik sürüm
 
-GitHub Pages'ta öneri formu veriyi JSON dosyası olarak indirir; otomatik toplanmış sayılmaz. Stand görevlisi dosyaları ayrıca teslim almalıdır. Otomatik öneri toplama gerekiyorsa aynı Node.js sunucusuna erişilen yerel ağ veya kalıcı diski destekleyen sunucu kullanın.
+Canlı stand sayfası: https://deryaelgit.github.io/Rumeysa-Proje-Lise/stand.html
+
+Bu sayfa açılınca haritanın canlı adresini içeren QR kod otomatik oluşur. Telefon kamerasıyla tarayan ziyaretçi haritaya gider. “Bir mekân önerin” bağlantısı Google Form'u açar; önerileri form sahibinin Google hesabındaki **Yanıtlar** sekmesinden inceleyin. Canlı öneriler `oneriler.json` dosyasına yazılmaz.
+
+QR kod yalnızca bir bağlantı içerir; siteyi veya önerileri içinde saklamaz. Ziyaretçilerin internet bağlantısı gerekir. Site adresi değişmediği sürece içerik güncellense de basılı QR kod kullanılabilir. “QR kodu SVG indir” kodu afiş tasarımına eklemek içindir; “Stand afişini yazdır” ise başlık, QR kod ve etkinlik yönergelerini yazdırır.

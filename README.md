@@ -1,4 +1,4 @@
-﻿# İstanbul Edebiyat Haritası
+# İstanbul'un Edebî Hafızası: Kitapların İzinde Dijital Şehir Atlası
 
 İki rehberin v2 sürümü temel alınarak hazırlanmış, veritabanı gerektirmeyen çalışan proje. Rehberlerin asılları korunmuştur. Türkçe arayüz, mobil görünüm, yerel Leaflet, Node.js ile dosyaya öneri kaydı ve stand için QR kod aracı içerir.
 
